@@ -16,9 +16,7 @@ from PyQt5.QtWidgets import QGroupBox
 from PyQt5.QtWidgets import QStackedWidget
 from PyQt5.QtWidgets import QListView
 from PyQt5.QtWidgets import QMessageBox
-
 from PyQt5.QtWidgets import QGridLayout
-
 from PyQt5.QtWidgets import QApplication
 from sets_to_tables.sets_maker import SetMaker
 
@@ -39,17 +37,13 @@ class MyApp(Data):
         self.tab2 = QGroupBox()
         self.tab3 = QGroupBox()
         self.tabs = QTabWidget()
-
         self.stack = QStackedWidget(self)
-
         # tab3 setting
         self.btn_show = QPushButton("show")
         self.tab3_group_11 = QVBoxLayout()
         self.tab3_group_22 = QVBoxLayout()
         self.stack2 = QStackedWidget(self)
-
         self.week = ("mon", "tue", "wed", "thu", "fri")
-
         self.classes_input = []     # input text from first tab 'lineEdit' to next tab 'btns_name'
         self.btns_name = []         # QRadioButton, set by the classes_input with next push button
         self.btns_week = []         # QRadioButton for week on second window
@@ -57,31 +51,19 @@ class MyApp(Data):
         self.initUI()               #
 
     def initUI(self):
-        #
         # tab1 레이아웃 설정
         self.Tab1()
-        # tab1 레이아웃 설정 반영
-        #
-
-        #
         # stack 에 요일들 추가
         self.set_stack()
-        #
         # tab2 레이아웃 설정
         self.Tab2()
-        # tab2 레이아웃 설정 반영
-        #
-
-        #
         # tab3 레이아웃 설정
         self.Tab3()
-        # tab3 레이아웃 설정 반영
-        #
-
+        # tabs 에 추가
         self.tabs.addTab(self.tab1, "수업 이름 설정")
         self.tabs.addTab(self.tab2, "수업 시간들 추가")
         self.tabs.addTab(self.tab3, "시간표")            # tab3 추가
-
+        # QVBoxlayout 설정
         vbox = QVBoxLayout()
         vbox.addWidget(self.tabs)
 
@@ -215,6 +197,8 @@ class MyApp(Data):
                 table_box.addWidget(label)
             table.setLayout(table_box)
             self.stack2.addWidget(table)
+        if len(self.table_making.class_set) == 0:
+            self.model.appendRow(QStandardItem("조합가능한 시간표가 없습니다..."))
         self.view.setModel(self.model)
         self.tab3_group_11.addWidget(self.view)
         self.view.clicked.connect(self.slot_clicked_item)
