@@ -1,4 +1,4 @@
-# TimeTable Maker
+# TimeTable Maker (이택영)
 ## 과목명과 과목별 시간표들을 입력하면 모든 조합가능 경우를 보여줌
 
 1. 수업 이름들 입력 후 'next' 클릭
